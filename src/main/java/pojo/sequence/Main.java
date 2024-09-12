@@ -2,17 +2,16 @@ package pojo.sequence;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import pojo.sequence.config.SequenceGeneratorConfiguration;
 
 public class Main {
 
     public static void main(String[] args) {
         ApplicationContext context =
-                new AnnotationConfigApplicationContext(SequenceGeneratorConfiguration.class);
+                new AnnotationConfigApplicationContext("pojo.sequence");
 
-        SequenceGenerator generator = context.getBean(SequenceGenerator.class);
+        SequenceDao sequenceDao = context.getBean(SequenceDao.class);
 
-        System.out.println(generator.getSequence());
-        System.out.println(generator.getSequence());
+        System.out.println(sequenceDao.getNextValue("IT"));
+        System.out.println(sequenceDao.getNextValue("IT"));
     }
 }

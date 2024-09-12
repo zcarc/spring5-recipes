@@ -2,19 +2,21 @@ package pojo.sequence.config;
 
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import pojo.sequence.SequenceGenerator;
+import org.springframework.context.annotation.FilterType;
 
 @Configuration
+@ComponentScan(
+        includeFilters = {
+                @ComponentScan.Filter(
+                        type = FilterType.REGEX,
+                        pattern = {"pojo.sequence.*Dao", "pojo.sequence.*Service"})
+        },
+        excludeFilters = {
+                @ComponentScan.Filter(
+                        type = FilterType.ANNOTATION,
+                        classes = {org.springframework.stereotype.Controller.class}) }
+)
 public class SequenceGeneratorConfiguration {
-
-    @Bean
-    public SequenceGenerator sequenceGenerator() {
-
-        SequenceGenerator seqgen = new SequenceGenerator();
-        seqgen.setPrefix("30");
-        seqgen.setSuffix("A");
-        seqgen.setInitial(100000);
-        return seqgen;
-    }
 }
