@@ -1,12 +1,10 @@
 package pojo.sequence;
 
-import org.springframework.stereotype.Component;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Component
+@DatePrefixAnnotation
 public class DatePrefixGenerator implements PrefixGenerator {
 
     private DateFormat formatter;

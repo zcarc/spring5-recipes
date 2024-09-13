@@ -1,10 +1,11 @@
 package pojo.sequence;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 
 public class SequenceGenerator {
 
-    @Resource(name = "datePrefixGenerator")
+    @DatePrefixAnnotation
+    @Inject
     private PrefixGenerator prefixGenerator;
 
     private String suffix;
