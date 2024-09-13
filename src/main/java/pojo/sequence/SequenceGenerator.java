@@ -9,8 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class SequenceGenerator {
 
     @Autowired
-    private PrefixGenerator[] prefixGenerators;
-
+    private PrefixGenerator prefixGenerator;
 
     private String suffix;
     private int initial;
@@ -20,12 +19,8 @@ public class SequenceGenerator {
 
         StringBuilder builder = new StringBuilder();
 
-        for (PrefixGenerator prefixGenerator : prefixGenerators) {
-            builder.append(prefixGenerator.getPrefix());
-            builder.append("-");
-        }
-
-        builder.append(initial)
+        builder.append(prefixGenerator.getPrefix())
+                .append(initial)
                 .append(counter.getAndIncrement())
                 .append(suffix);
         return builder.toString();
