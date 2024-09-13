@@ -1,15 +1,15 @@
 package pojo.sequence;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import pojo.sequence.config.PrefixConfiguration;
 import pojo.sequence.config.SequenceConfiguration;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        ApplicationContext context = new AnnotationConfigApplicationContext(PrefixConfiguration.class, SequenceConfiguration.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.register(SequenceConfiguration.class);
+        context.refresh();
 
         SequenceGenerator generator =
                 (SequenceGenerator) context.getBean("sequenceGenerator");
