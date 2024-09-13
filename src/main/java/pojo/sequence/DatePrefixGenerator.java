@@ -9,9 +9,14 @@ import java.util.Date;
 @Component
 public class DatePrefixGenerator implements PrefixGenerator {
 
+    private DateFormat formatter;
+
+    public void setPattern(String pattern) {
+        this.formatter = new SimpleDateFormat(pattern);
+    }
+
     @Override
     public String getPrefix() {
-        DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
         return formatter.format(new Date());
     }
 }

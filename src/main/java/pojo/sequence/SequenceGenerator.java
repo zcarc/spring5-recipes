@@ -2,23 +2,15 @@ package pojo.sequence;
 
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Setter
 public class SequenceGenerator {
 
-//    @Autowired
-//    @Qualifier("numberPrefixGenerator")
-//    private PrefixGenerator prefixGenerator;
-
+    @Autowired
     private PrefixGenerator prefixGenerator;
 
-    @Autowired
-    public void myOwnCustomInjectionName(@Qualifier("datePrefixGenerator") PrefixGenerator prefixGenerator) {
-        this.prefixGenerator = prefixGenerator;
-    }
 
     private String suffix;
     private int initial;
