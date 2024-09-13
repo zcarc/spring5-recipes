@@ -1,29 +1,42 @@
 package pojo.sequence;
 
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-@Setter
 public class SequenceGenerator {
 
-    @Autowired
+    @Resource(name = "datePrefixGenerator")
     private PrefixGenerator prefixGenerator;
-
 
     private String suffix;
     private int initial;
-    private AtomicInteger counter = new AtomicInteger();
+    private int counter;
 
-    public String getSequence() {
+    public SequenceGenerator() {
+    }
 
-        StringBuilder builder = new StringBuilder();
+    public SequenceGenerator(PrefixGenerator prefixGenerator, String suffix, int initial) {
+        this.prefixGenerator = prefixGenerator;
+        this.suffix = suffix;
+        this.initial = initial;
+    }
 
-        builder.append(prefixGenerator.getPrefix())
-                .append(initial)
-                .append(counter.getAndIncrement())
-                .append(suffix);
-        return builder.toString();
+    public void setPrefixGenerator(PrefixGenerator prefixGenerator) {
+        this.prefixGenerator = prefixGenerator;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
+    public void setInitial(int initial) {
+        this.initial = initial;
+    }
+
+    public synchronized String getSequence() {
+        StringBuilder buffer = new StringBuilder();
+        buffer.append(prefixGenerator.getPrefix());
+        buffer.append(initial + counter++);
+        buffer.append(suffix);
+        return buffer.toString();
     }
 }
