@@ -1,11 +1,10 @@
 package pojo.shop;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
-import pojo.shop.config.ShopConfiguration;
 
 import java.util.Properties;
 
@@ -13,7 +12,8 @@ import java.util.Properties;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        ApplicationContext context = new AnnotationConfigApplicationContext(ShopConfiguration.class);
+
+        ApplicationContext context = new GenericXmlApplicationContext("shop-config.xml");
 
         Product aaa = context.getBean("aaa", Product.class);
         Product cdrw = context.getBean("cdrw", Product.class);

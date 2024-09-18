@@ -1,0 +1,45 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Load properties file -->
+    <context:property-placeholder location="classpath:discounts.properties"/>
+
+    <!-- Component scanning -->
+    <context:component-scan base-package="pojo.shop"/>
+
+    <!-- Define the banner resource -->
+    <bean id="banner" class="org.springframework.core.io.ClassPathResource">
+        <constructor-arg value="banner.txt"/>
+    </bean>
+
+    <!-- Define the BannerLoader bean -->
+    <bean id="bannerLoader" class="pojo.shop.BannerLoader">
+        <property name="banner" ref="banner"/>
+    </bean>
+
+    <!-- Define the Product beans with discounts -->
+    <bean id="aaa" class="pojo.shop.Battery">
+        <property name="name" value="AAA"/>
+        <property name="price" value="2.5"/>
+        <property name="rechargeable" value="true"/>
+        <property name="discount" value="${specialcustomer.discount}"/>
+    </bean>
+
+    <bean id="cdrw" class="pojo.shop.Disc">
+        <constructor-arg value="CD-RW"/>
+        <constructor-arg value="1.5"/>
+        <constructor-arg value="${summer.discount}"/>
+        <property name="capacity" value="700"/>
+    </bean>
+
+    <bean id="dvdrw" class="pojo.shop.Disc">
+        <constructor-arg value="DVD-RW"/>
+        <constructor-arg value="3.0"/>
+        <constructor-arg value="${endofyear.discount}"/>
+        <property name="capacity" value="700"/>
+    </bean>
+
+</beans>
