@@ -1,14 +1,15 @@
 package pojo.shop_2_8_i;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import pojo.shop_2_8_i.config.ShopConfiguration;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(ShopConfiguration.class);
+//        AnnotationConfigApplicationContext context =
+//                new AnnotationConfigApplicationContext(ShopConfiguration.class);
+
+        GenericXmlApplicationContext context = new GenericXmlApplicationContext("2_8_i/shop-config.xml");
 
         Product aaa = context.getBean("aaa", Product.class);
         Product cdrw = context.getBean("cdrw", Product.class);

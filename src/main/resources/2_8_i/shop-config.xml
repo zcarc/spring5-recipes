@@ -1,0 +1,39 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- ComponentScan equivalent -->
+    <context:component-scan base-package="pojo.shop_2_8_i"/>
+
+    <!-- Bean definition for aaa (Battery) -->
+    <bean id="aaa" class="pojo.shop_2_8_i.Battery">
+        <property name="name" value="AAA"/>
+        <property name="price" value="2.5"/>
+        <property name="rechargeable" value="true"/>
+    </bean>
+
+    <!-- Bean definition for cdrw (Disc) -->
+    <bean id="cdrw" class="pojo.shop_2_8_i.Disc">
+        <constructor-arg value="CD-RW"/>
+        <constructor-arg value="1.5"/>
+        <property name="capacity" value="700"/>
+    </bean>
+
+    <!-- Bean definition for dvdrw (Disc) -->
+    <bean id="dvdrw" class="pojo.shop_2_8_i.Disc">
+        <constructor-arg value="DVD-RW"/>
+        <constructor-arg value="3.0"/>
+        <property name="capacity" value="700"/>
+    </bean>
+
+    <!-- Bean definition for cashier with init and destroy methods -->
+    <bean id="cashier" class="pojo.shop_2_8_i.Cashier" init-method="openFile" destroy-method="closeFile">
+        <property name="fileName" value="checkout"/>
+        <property name="path" value="#{systemProperties['java.io.tmpdir'] + '/cashier'}"/>
+    </bean>
+
+</beans>
