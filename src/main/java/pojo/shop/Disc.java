@@ -8,8 +8,8 @@ public class Disc extends Product {
         super();
     }
 
-    public Disc(String name, double price) {
-        super(name, price);
+    public Disc(String name, double price, double discount) {
+        super(name, price, discount);
     }
 
     // 게터 및 세터

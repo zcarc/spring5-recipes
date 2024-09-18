@@ -1,5 +1,10 @@
 package pojo.shop;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class Battery extends Product {
 
     private boolean rechargeable;
@@ -8,16 +13,7 @@ public class Battery extends Product {
         super();
     }
 
-    public Battery(String name, double price) {
-        super(name, price);
-    }
-
-    public boolean getRechargeable() {
-        return rechargeable;
-    }
-
-    // 게터 및 세터
-    public void setRechargeable(boolean rechargeable) {
-        this.rechargeable = rechargeable;
+    public Battery(String name, double price, double discount) {
+        super(name, price, discount);
     }
 }
