@@ -1,0 +1,18 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean id="datePrefixGenerator"
+          class="pojo.recipe_2_9_iii.DatePrefixGenerator">
+        <property name="pattern" value="yyyyMMdd"/>
+    </bean>
+
+    <bean id="sequenceGenerator"
+          class="pojo.recipe_2_9_iii.SequenceGenerator">
+        <property name="suffix" value="A"/>
+        <property name="initial" value="1000000"/>
+        <property name="prefixGenerator" ref="datePrefixGenerator"/>
+    </bean>
+
+</beans>
