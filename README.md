@@ -75,3 +75,37 @@ System.out.println("Shopping cart 2 contains " + cart2.getItems());
 
 이렇게 프로그램 실행 흐름에 따라 할인이 어떻게 적용되는지 시뮬레이션할 수 있습니다.
 
+
+# 레시피 2-11 스프링 환경 및 프로파일마다 다른 POJO 로드하기
+## recipe_2_11
+ - ### @Profile로 자바 구성 클래스를 프로파일별로 작성하기
+ - ### 프로파일을 환경에 로드하기
+ - ### 기본 프로파일 지정하기
+
+
+### 프로파일을 환경에 로드하기
+
+자바 런타임 플래그로 로드할 프로파일을 명시하는 방법 <br/>
+가령 global, winter 프로파일에 속할 빈을 로드하려면 다음 플래그를 추가합니다.
+
+```
+-Dspring.profiles.active=global,winter
+```
+
+### 기본 프로파일 지정하기
+
+액티브 프로파일을 하나라도 찾지 못할 경우 기본 프로파일이 로드됩니다.
+
+```java
+// 액티브 프로파일 대신
+context.setActiveProfiles("global", "winter");
+
+// 디폴트 프로파일 사용
+context.setDefaultProfiles("global", "winter");
+```
+
+자바 런타임 플래그로 지정할 경우
+
+```
+-Dspring.profiles.default=global,winter
+```
