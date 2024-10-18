@@ -4,7 +4,6 @@ package pojo.recipe_2_17_iv;
 import org.springframework.stereotype.Component;
 
 @Component("arithmeticCalculator")
-@LoggingRequired
 public class ArithmeticCalculatorImpl implements ArithmeticCalculator {
 
     @Override

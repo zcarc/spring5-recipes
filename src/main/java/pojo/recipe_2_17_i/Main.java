@@ -14,12 +14,12 @@ public class Main {
                 (ArithmeticCalculator) context.getBean("arithmeticCalculator");
         arithmeticCalculator.add(1, 2);
         arithmeticCalculator.sub(4, 3);
-        arithmeticCalculator.mul(2, 3);
-        arithmeticCalculator.div(4, 2);
+//        arithmeticCalculator.mul(2, 3);
+//        arithmeticCalculator.div(4, 2);
 
-        UnitCalculator unitCalculator =
-                (UnitCalculator) context.getBean("unitCalculator");
-        unitCalculator.kilogramToPound(10);
-        unitCalculator.kilometerToMile(5);
+//        UnitCalculator unitCalculator =
+//                (UnitCalculator) context.getBean("unitCalculator");
+//        unitCalculator.kilogramToPound(10);
+//        unitCalculator.kilometerToMile(5);
     }
 }

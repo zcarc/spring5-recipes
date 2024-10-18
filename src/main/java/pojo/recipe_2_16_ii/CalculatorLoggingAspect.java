@@ -15,10 +15,6 @@ public class CalculatorLoggingAspect {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("execution(* *.*(..))")
-    private void loggingOperation() {
-    }
-
     @Before("CalculatorPointcuts.loggingOperation()")
     public void logBefore(JoinPoint joinPoint) {
         log.info("The method " + joinPoint.getSignature().getName()

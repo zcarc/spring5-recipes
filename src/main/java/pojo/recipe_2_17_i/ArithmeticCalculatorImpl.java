@@ -2,10 +2,10 @@ package pojo.recipe_2_17_i;
 
 import org.springframework.stereotype.Component;
 
-@LoggingRequired
 @Component("arithmeticCalculator")
 public class ArithmeticCalculatorImpl implements ArithmeticCalculator {
 
+    @LoggingRequired
     @Override
     public double add(double a, double b) {
         double result = a + b;
