@@ -470,3 +470,21 @@ public void accountServiceType() {}
 위 예시에서 `accountServiceMethods()`는 `AccountService` 클래스의 모든 메서드에 AOP를 적용하지만, `accountServiceType()`는 `AccountService` 클래스 전체를 대상으로 하여 모든 메서드가 적용 대상이 됩니다.
 
 두 패턴은 서로 보완적인 역할을 하며, 적절한 상황에 맞게 사용하면 됩니다. 메서드 시그니처 패턴은 세부적으로 메서드를 지정할 때, 타입 시그니처 패턴은 더 넓은 범위의 클래스나 패키지에 일괄적으로 적용할 때 적합합니다.
+
+
+# 레시피 2-18 인트로독션을 이용해 POJO에 기능 더하기
+
+~~~java
+@DeclareParents(
+    value = "pojo.recipe_2_18.ArithmeticCalculatorImpl+",
+    defaultImpl = MaxCalculatorImpl.class)
+public MaxCalculator maxCalculator;
+
+@DeclareParents(
+    value = "pojo.recipe_2_18.ArithmeticCalculatorImpl+",
+    defaultImpl = MinCalculatorImpl.class)
+public MinCalculator minCalculator;
+~~~
+
+\+ 기호는 AspectJ 포인트컷 표현식에서 해당 클래스와 그 서브클래스들을 모두 포함한다는 의미입니다.
+
