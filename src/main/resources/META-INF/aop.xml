@@ -1,0 +1,12 @@
+<!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN"
+        "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+
+<aspectj>
+    <weaver>
+        <include within="pojo.*"/>
+    </weaver>
+
+    <aspects>
+        <aspect name="pojo.recipe_2_20_iii.ComplexCachingAspect"/>
+    </aspects>
+</aspectj>
