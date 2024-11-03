@@ -3,10 +3,10 @@
 
 <aspectj>
     <weaver>
-        <include within="pojo.*"/>
+        <include within="pojo.recipe_2_21.*"/>
     </weaver>
 
     <aspects>
-        <aspect name="pojo.recipe_2_20_iii.ComplexCachingAspect"/>
+        <aspect name="pojo.recipe_2_21.ComplexCachingAspect"/>
     </aspects>
 </aspectj>

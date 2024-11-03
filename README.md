@@ -523,3 +523,15 @@ AspectJ를 사용하여 `Complex` 객체를 캐싱하는 것은 Spring IoC 컨�
 #### recipe_2_20_ii - AspectJ 위버로 로드 타임에 위빙
 #### recipe_2_20_iii - 스프링 로드 타임 위버로 로드 타임에 위빙하기
 - 이 부분은 실행이 정상적으로 되지 않아서 패스
+
+# 레시피 2-21 스프링에서 AspectJ 애스펙트 구성하기
+
+#### 문제
+AspectJ 프레임워크가 사용하는 애스펙트는 이 프레임워크가 자체적으로 인스턴스화하기 때문에 원하는 대로 구성하려면 AspectJ 프레임워크에서 일단 인스턴스를 가져와야 합니다.
+
+#### 해결책
+모든 AspectJ 애스펙트는 Aspects라는 팩토리 클래스가 있고 이 클래스의 정적  팩토리 메서드 aspectOf()를 호출하면 현재 애스펙트 인스턴스를 가져올 수 있습니다.
+IoC 컨테이너에서는 Aspects.aspectOf(ComplexCachingAspect.class)를 호출해서 빈을 선언합니다.
+
+#### 실행명령 
+java -javaagent:aspectjweaver-1.9.22.1.jar -jar recipe_2_21.jar
