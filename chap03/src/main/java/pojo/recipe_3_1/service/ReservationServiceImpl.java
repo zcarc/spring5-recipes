@@ -1,13 +1,12 @@
-package pojo.recipe_3_1_i.service;
+package pojo.recipe_3_1.service;
 
 import org.springframework.stereotype.Service;
-import pojo.recipe_3_1_i.domain.Player;
-import pojo.recipe_3_1_i.domain.Reservation;
-import pojo.recipe_3_1_i.domain.SportType;
+import pojo.recipe_3_1.domain.Player;
+import pojo.recipe_3_1.domain.Reservation;
+import pojo.recipe_3_1.domain.SportType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;

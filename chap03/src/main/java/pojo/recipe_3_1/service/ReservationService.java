@@ -1,6 +1,6 @@
-package pojo.recipe_3_1_i.service;
+package pojo.recipe_3_1.service;
 
-import pojo.recipe_3_1_i.domain.Reservation;
+import pojo.recipe_3_1.domain.Reservation;
 
 import java.util.List;
 

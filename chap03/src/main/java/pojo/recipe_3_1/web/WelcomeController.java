@@ -1,4 +1,4 @@
-package pojo.recipe_3_1_i.web;
+package pojo.recipe_3_1.web;
 
 
 import org.springframework.stereotype.Controller;

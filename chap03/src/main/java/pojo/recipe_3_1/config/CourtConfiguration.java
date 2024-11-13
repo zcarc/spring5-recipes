@@ -1,12 +1,8 @@
-package pojo.recipe_3_1_i.config;
+package pojo.recipe_3_1.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-@ComponentScan("pojo.recipe_3_1_i")
-@Configuration
 public class CourtConfiguration {
 
     @Bean

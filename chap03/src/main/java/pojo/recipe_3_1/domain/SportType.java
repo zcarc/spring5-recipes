@@ -1,4 +1,4 @@
-package pojo.recipe_3_1_i.domain;
+package pojo.recipe_3_1.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

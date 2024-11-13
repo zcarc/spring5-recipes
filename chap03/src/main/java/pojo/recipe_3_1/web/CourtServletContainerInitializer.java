@@ -1,8 +1,8 @@
-package pojo.recipe_3_1_i.web;
+package pojo.recipe_3_1.web;
 
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
-import pojo.recipe_3_1_i.config.CourtConfiguration;
+import pojo.recipe_3_1.config.CourtConfiguration;
 
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;

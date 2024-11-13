@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:mvc="http://www.springframework.org/schema/mvc"
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:context="http://www.springframework.org/schema/context"
              xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <annotation-driven />
 
@@ -20,5 +22,23 @@
 
     <!-- 프로젝트 패키지이름 확인 -->
     <context:component-scan base-package="pojo" />
+
+    <!-- Start Interceptor -->
+    <!-- Interceptor 빈 정의 -->
+    <beans:bean id="measuremenInterceptor" class="pojo.recipe_3_1.web.MeasuremenInterceptor"/>
+    <beans:bean id="summaryReporterInterceptor" class="pojo.recipe_3_1.web.ExtensionInterceptor"/>
+
+    <!-- Interceptor 등록 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <beans:ref bean="measuremenInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/reservationSummary"/>
+            <beans:ref bean="summaryReporterInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <!-- End Interceptor -->
 
 </beans:beans>
