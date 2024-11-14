@@ -20,13 +20,27 @@
         <beans:property name="suffix" value=".jsp" />
     </beans:bean>
 
+
     <!-- 프로젝트 패키지이름 확인 -->
-    <context:component-scan base-package="pojo" />
+    <context:component-scan base-package="pojo.recipe_3_4" />
 
     <!-- Start Interceptor -->
     <!-- Interceptor 빈 정의 -->
     <beans:bean id="measuremenInterceptor" class="pojo.recipe_3_1.web.MeasuremenInterceptor"/>
     <beans:bean id="summaryReporterInterceptor" class="pojo.recipe_3_1.web.ExtensionInterceptor"/>
+
+    <!-- Start 동적 locale (URL 파라미터) -->
+    <beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <beans:property name="cookieName" value="lang"/>
+        <beans:property name="cookieMaxAge" value="3600"/>
+        <beans:property name="defaultLocale" value="fr"/>
+        <beans:property name="cookiePath" value="/" />
+    </beans:bean>
+
+    <beans:bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <beans:property name="paramName" value="lang"/>
+    </beans:bean>
+    <!-- End 동적 locale (URL 파라미터) -->
 
     <!-- Interceptor 등록 -->
     <mvc:interceptors>
@@ -37,6 +51,10 @@
         <mvc:interceptor>
             <mvc:mapping path="/reservationSummary"/>
             <beans:ref bean="summaryReporterInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <beans:ref bean="localeChangeInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
     <!-- End Interceptor -->
