@@ -242,3 +242,64 @@ public class ViewResolverConfiguration implements WebMvcConfigurer {
     }
 }
 ~~~
+
+## 레시피 3-8 뷰에 예외 매핑하기
+
+서버에서 예기치 않은 예외가 발생하면 예외 스택 스테이스(stack trace)가 화면에 출력됩니다. <br>
+일반 사용자의 사용자 경험에도 좋지 않고, 내부 메서드 호출구조가 출력돼서 잠재적인 보안 위험이 있습니다. <br> 
+HTTP 에러나 클래스 예외가 발생해도 JSP 페이지가 보이도록 web.xml 파일을 설정하면 되긴 하나,
+스프링 MVC는 클래스 예외 처리용 뷰를 관리하는 기능까지 지원합니다.
+
+- 스프링 MVC 에서 컨텍스트 레벨에 예외 리졸버 빈을 하나 이상 등록하면 붙잡히지 않는 예외를 처리할 수 있습니다.
+- HandlerExceptionResolver 인터페이스를 구현한 예외 리졸버 빈은 DispatcherServlet이 자동으로 감지합니다.
+- 스프링 MVC 에 내장된 단순 예외 리졸버를 이용하면 예외 카테고리별로 뷰를 하나씩 매핑할 수 있습니다.
+
+- 붙잡히지 않는 예외는 HandlerExceptionResolver 인터페이스를 구현한 커스텀 예외 리졸버로 해석할 수 있습니다. 
+- 보통 예외 카테고리별로 각각의 에러 페이지를 매핑합니다.
+- 스프링 MVC에 내장된 예외 리졸버 SimpleMappingExceptionResolver를 이용하면 웹 애플리케이션 컨텍스트에서 발생한 예외를 매핑할 수 있습니다.
+
+### HandlerExceptionResolver로 매핑하기
+
+recipe_3_8 패키지에 구현
+
+### @ExceptionHandler로 매핑하기
+
+- HandlerExceptionResolver를 구성하지 않고 메서드에 @ExceptionHandler를 붙여서 예외 핸들러를 매핑하는 방법도 있습니다.
+- 여러 타입인 ModelAndView, View 등의 객체도 반환할 수 있습니다.
+- 유연하게 사용가능하지만 애노테이션이 정의된 컨트롤러에서만 작동하기 때문에 다른 컨트롤러에서 예외가 발생하면 호출되지 않습니다.
+
+~~~java
+    @ExceptionHandler(ReservationNotAvailableException.class)
+    public String handle(ReservationNotAvailableException ex) {
+        return "reservationNotAvailable";
+    }
+
+    @ExceptionHandler
+    public String handleDefault(Exception e) {
+        return "error";
+    }
+~~~
+
+- handle: ReservationNotAvailableException 하나만 처리하는 메서드
+- handleDefault 나머지 모든 예외 처리 메서드
+
+### 범용적인 예외 처리 클래스 @ControllerAdvice로 매핑하기
+
+- 애플리케이션 컨텍스트에 존재하는 모든 컨트롤러에 적용됩니다.
+- 모든 컨트롤러에 어드바이스를 적용한다는 의미입니다.
+
+~~~java
+@ControllerAdvice
+public class ExceptionHandlingAdvice {
+
+    @ExceptionHandler(ReservationNotAvailableException.class)
+    public String handle(ReservationNotAvailableException ex) {
+        return "reservationNotAvailable";
+    }
+
+    @ExceptionHandler
+    public String handleDefault(Exception e) {
+        return "error";
+    }
+}
+~~~
