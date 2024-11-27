@@ -22,7 +22,7 @@
     </bean>
 
     <!-- 프로젝트 패키지이름 확인 -->
-    <context:component-scan base-package="pojo.recipe_3_5" />
+    <context:component-scan base-package="pojo.recipe_3_9" />
 
     <!-- Start Interceptor -->
     <!-- Interceptor 빈 정의 -->
@@ -33,7 +33,7 @@
     <beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <beans:property name="cookieName" value="lang"/>
         <beans:property name="cookieMaxAge" value="3600"/>
-        <beans:property name="defaultLocale" value="ko_KR"/>
+        <beans:property name="defaultLocale" value=""/>
         <beans:property name="cookiePath" value="/" />
         <beans:property name="cookieHttpOnly" value="true" />
     </beans:bean>
